@@ -1,0 +1,8 @@
+{
+  "devDependencies": {
+    "webpack-bundle-tracker": "^1.0.0"
+  },
+  "dependencies": {
+    "vue": "^3.0.11"
+  }
+}
