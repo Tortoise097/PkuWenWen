@@ -21,6 +21,6 @@ from myapp import views as myapp_views
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    # path(r'', TemplateView.as_view(template_name='index.html')), # this can't work
-    path('vue-test', myapp_views.vue_test),
+    # path('', TemplateView.as_view(template_name='index.html')), # this can't work
+    path('vue-test/', myapp_views.vue_test),
 ]
