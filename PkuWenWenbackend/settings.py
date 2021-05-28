@@ -118,7 +118,11 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/3.0/howto/static-files/
 
 STATIC_URL = '/static/'
-# STATICFILES_DIRS = [os.path.join(BASE_DIR, 'frontend/dist/static')] # 这句不太管用的样子
+
+# STATICFILES_DIRS = [os.path.join(BASE_DIR, 'frontend/dist/static')] # 这句不太管用的样子 本质山只是放静态文件的地方不一样而已，实际上都是一个意思
+
+
 STATIC_ROOT = 'var/static_root/'
+
 STATICFILES_DIRS = ['static']
 
