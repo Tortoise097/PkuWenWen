@@ -54,8 +54,7 @@ MIDDLEWARE = [
 
 ######################### Add these about CORS #####################################
 CORS_ORIGIN_ALLOW_ALL = False
-CORS_ORIGIN_WHITELIST = ("http://localhost:8080",)
-
+CORS_ORIGIN_WHITELIST = ("http://localhost:8080")
 ######################### Add these about CORS #####################################
 
 ROOT_URLCONF = 'PkuWenWenbackend.urls'
@@ -88,7 +87,6 @@ DATABASES = {
         'NAME' : 'PkuWenWendatabase', #your database
     }
 }
-
 
 # Password validation
 # https://docs.djangoproject.com/en/3.0/ref/settings/#auth-password-validators

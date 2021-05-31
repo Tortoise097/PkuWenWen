@@ -69,7 +69,8 @@ export default {
                 });
 
                 localStorage.setItem('ms_username', _this.param.username);
-                _this.$router.push('/SchoolIndex');
+                _this.$router.push('/SchoolIndex'); 
+                // push有问题
               }
               else if(response.data.login.retCode == 2) {
                 _this.$message({

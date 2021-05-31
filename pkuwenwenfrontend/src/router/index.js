@@ -6,13 +6,6 @@ const routes = [
       name: 'Home',
       component: () => import('../components/Home.vue')
     },
-    /*
-    {
-        path: '/Home',
-        name: 'HomePage',
-        component: () => import('../components/Home.vue')
-    },
-    */
     {
         path: '/SignUp',
         name: 'SignUp',
@@ -30,7 +23,6 @@ const routes = [
         name: 'About',
         component: () => import('../components/About.vue')
     },
-
     {
         path: '/SchoolIndex',
         name: 'SchoolIndex',

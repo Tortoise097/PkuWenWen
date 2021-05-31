@@ -67,3 +67,4 @@ def login(request):
             res['retCode'] = 2
             res['message'] = '密码错误'
     return HttpResponse(json.dumps({'login': res}))
+
