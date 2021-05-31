@@ -7,7 +7,7 @@
           <el-table :data="unread" :show-header="false" style="width: 100%">
             <el-table-column>
               <template #default="scope">
-                <span class="message-title">{{scope.row.title}}</span>
+                <span class="message-title"><router-link to="/Questions/IWantToUseVarHere">{{scope.row.title}}</router-link></span>
               </template>
             </el-table-column>
             <el-table-column prop="content" width="180"></el-table-column>
@@ -72,22 +72,26 @@ export default {
         title: 'Question1',
         content: "描述1",
         stars: "233",
+        link: 'q1',
       },{
         date: '更新于 2021-04-19 20:00:00',
         title: 'Question2',
         content: "描述2",
         stars: "61",
+        link: 'q2',
       }],
       read: [{
         date: '更新于 2021-04-19 20:00:00',
         title: 'Question3',
         content: "描述3",
         stars: "618",
+        link: 'q3',
       },{
         date: '更新于 2021-04-19 20:00:00',
         title: 'Question4',
         content: "描述4",
         stars: "604",
+        link: 'q4',
       }],
       form: {
         desc: '这里应该有高赞回复的内容\n而且这个输入框是可以随着内容数量的变化改变大小的',
