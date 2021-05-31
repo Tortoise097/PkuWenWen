@@ -1,7 +1,18 @@
 <template>
-  <div id = "Home">
-    <p>Welcome to PkuWenWen</p>
-    <p>Please sign in</p>
+   <div>
+    <div id="home">
+        <router-link to="/">Home</router-link> |
+        <router-link to="/About">About</router-link> |
+        <router-link to="/SignIn">Sign In</router-link> |
+        <router-link to="/SignUp">Sign Up</router-link>
+    </div>
+    <div>
+        <img alt="Vue logo" src="../assets/logo.png">
+    </div>
+    <div>
+        <p>This is the HomePage of PkuWenWen  </p>
+        <p> Please sign in </p>
+    </div>
   </div>
 </template>
 
@@ -12,12 +23,5 @@ export default {
 </script>
 
 <style>
-#Home {
-  font-family: Avenir, Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #101010;
-  margin-top: 60px;
-}
+
 </style>

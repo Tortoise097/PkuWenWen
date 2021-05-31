@@ -46,6 +46,8 @@ def register(request):
 
     return HttpResponse(json.dumps({'register': res}))
 
+# 登录：登录之后会自动跳转到SchoolIndex页
+@csrf_exempt
 def login(request):
     userName = request.POST.get('userName', 'username')
     password = request.POST.get('password', 'xxx')

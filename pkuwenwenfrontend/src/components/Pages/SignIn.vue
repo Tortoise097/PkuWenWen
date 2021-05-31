@@ -1,31 +1,36 @@
 <template>
+<div>
+    <div id="navbar">
+        <router-link to="/">Home</router-link> |
+        <router-link to="/About">About</router-link> |
+        <router-link to="/SignIn">Sign In</router-link> |
+        <router-link to="/SignUp">Sign Up</router-link>
+    </div>
+    <div>
+        <img alt="Vue logo" src="./logo.png">
+    </div>
     <div class="ms-login">
         <el-form :model="param" :rules="rules" ref="login" label-width="0px" class="ms-content">
-                <el-form-item prop="username">
-                    <el-input v-model="param.username" placeholder="请输入用户名">
-                        
-                    </el-input>
-                </el-form-item>
-                <el-form-item prop="emali">
-                    <el-input v-model="param.email" placeholder="请输入邮箱">
-                       
-                    </el-input>
-                </el-form-item>
-                <el-form-item prop="password">
-                    <el-input
-                        type="password"
-                        placeholder="请输入密码"
-                        v-model="param.password"
-                        @keyup.enter="registerForm()"
-                    >
-                        
-                    </el-input>
+            <el-form-item prop="username">
+                <el-input v-model="param.username" placeholder="请输入用户名">
+                </el-input>
+            </el-form-item>
+            <el-form-item prop="password">
+                <el-input
+                    type="password"
+                    placeholder="请输入密码"
+                    v-model="param.password"
+                    @keyup.enter="submitForm()"
+                >
+
+                </el-input>
                 </el-form-item>
                 <div class="login-btn">
-                    <el-button type="info" @click="registerForm()">注册</el-button>
+                    <el-button type="info" @click="submitForm()">登录</el-button>
                 </div>
-        </el-form>
+            </el-form>
     </div>
+</div>
 </template>
 
 <script>
@@ -35,42 +40,47 @@ export default {
             param: {
                 username: '',
                 password: '',
-                email: '',
             },
             rules: {
                 username: [{ required: true, message: '请输入用户名', trigger: 'blur' }],
-                email: [{ required: true, message: '请输入邮箱', trigger: 'blur' }],
                 password: [{ required: true, message: '请输入密码', trigger: 'blur' }],
             },
         };
     },
     methods: {
-        registerForm() {
+        submitForm() {
             var post_request = new FormData()
             post_request.append('userName', this.param.username)
             post_request.append('password', this.param.password)
-            post_request.append('email', this.param.email)
             let _this = this;
             this.$http
             .request({
-              url: this.$url + '/register',
+              url: this.$url + '/login',
               method: 'post',
               data: post_request,
               headers: { 'Content-Type': 'multipart/form-data' },
             })
             .then(function(response) {
               console.log(response)
-              if(response.data.register.retCode == 1){
+              if(response.data.login.retCode == 1){
                 _this.$message({
-                    message: response.data.register.message + "！请登录",
+                    message: response.data.login.message,
                     type: 'success',
                 });
-                _this.$router.push('/login');
+
+                localStorage.setItem('ms_username', _this.param.username);
+                _this.$router.push('/SchoolIndex');
+              }
+              else if(response.data.login.retCode == 2) {
+                _this.$message({
+                    message: response.data.login.message,
+                    type: 'error',
+                });
               }
               else {
                 _this.$message({
-                    message: response.data.register.message,
-                    type: 'error',
+                    message: response.data.login.message + "！请先注册",
+                    type: 'warning',
                 });
               }
               
@@ -84,7 +94,6 @@ export default {
 </script>
 
 <style scoped>
-
 .head {
     width: 100%;
     height: 70px;
@@ -107,7 +116,7 @@ export default {
 .ms-login {
     position: absolute;
     left: 50%;
-    top: 0%;
+    top: 20%;
     width: 350px;
     margin: 190px 0 0 -175px;
     border-radius: 5px;
@@ -130,4 +139,6 @@ export default {
     line-height: 30px;
     color: #fff;
 }
+
+
 </style>
