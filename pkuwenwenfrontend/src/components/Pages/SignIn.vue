@@ -55,6 +55,7 @@ export default {
     },
     methods: {
         submitForm() {
+            alert('登陆成功');
             var post_request = new FormData()
             post_request.append('userName', this.param.username)
             post_request.append('password', this.param.password)
@@ -71,7 +72,13 @@ export default {
               // if(response.data.login.retCode == 1){  //这行在最后需要代替下面的 if true
               // eslint-disable-next-line no-constant-condition
               if(true){
-                this.$message.success("登陆成功")
+                alert('登陆成功');
+                /*
+                this.$message({
+                    showClose: true,
+                    message:'登录成功'
+                })
+                */
                 localStorage.setItem("ms_username", this.param.username)
                 this.$router.push('/SchoolIndex');
                 // push有问题,解决中

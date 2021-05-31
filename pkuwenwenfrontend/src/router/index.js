@@ -35,14 +35,16 @@ const router = createRouter({
     routes,
 });
 
+/*
 router.beforeEach((to, from, next) => {
     document.title = `| PkuWenWen |`;
     const role = localStorage.getItem('ms_username');
-    if (!role && to.path !== '/login') {
-        next('/login');
+    if (!role && to.path !== '/SignIn') {
+        next('/SignIn');
     } else {
         next();
     }
 })
+*/
 
 export default router

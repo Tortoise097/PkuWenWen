@@ -51,20 +51,23 @@ def register(request):
 def login(request):
     userName = request.POST.get('userName', 'username')
     password = request.POST.get('password', 'xxx')
-
     res = {'retCode': 0, 'message': ''}
+    print("userName = {}, password = {}".format(userName,password))
     obj = models.UserModel.objects.filter(userName=userName)
 
     if obj.count() == 0:
         res['retCode'] = 0
         res['message'] = '用户不存在'
+        print('用户不存在')
     else:
         obj = models.UserModel.objects.get(userName=userName)
         if obj.password == password:
             res['retCode'] = 1
             res['message'] = '成功登录'
+            print("登陆成功")
         else:
             res['retCode'] = 2
             res['message'] = '密码错误'
+            print("密码错误")
     return HttpResponse(json.dumps({'login': res}))
 

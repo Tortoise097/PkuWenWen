@@ -13,14 +13,24 @@
         <h1>
             this is the About Page of Vue
         </h1>
+        <el-button type="primary" @click="ClickThis()">测试此按钮</el-button>
+        
     </div>
 </div>
 </template>
 
 <script>
 export default{
-  
-}
+    data() {
+        return ;
+    },
+    methods: {
+        ClickThis(){
+            alert("you click this!");
+        },
+    },
+};
+
 </script>
 
 <style>

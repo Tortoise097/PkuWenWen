@@ -15,5 +15,8 @@ app.use(router)
 app.use(ElementPlus)
 app.config.globalProperties.$http = axios
 app.config.globalProperties.$url = 'http://127.0.0.1:8000'
-app.config.globalProperties.$message=ElMessage
+app.config.globalProperties.$message= ElMessage
+app.provide('$message', ElMessage)
+
 app.mount('#app')
+
