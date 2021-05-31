@@ -1,10 +1,14 @@
 <template>
-  <h1>
-    This is the Sign Up Page of Vue
-  </h1>
+<p>
+    this is Sign Up Page of Vue
+</p>
+
 </template>
 
 <script>
+export default{
+  
+}
 </script>
 
 <style>

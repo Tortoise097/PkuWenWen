@@ -1,36 +1,34 @@
-import { createWebHistory, createRouter } from "vue-router";
-import Home from '../components/Home.vue'
-import SignUp from '../components/Pages/SignUp.vue'
-import SignIn from '../components/Pages/SignIn.vue'
-import About from '../components/About.vue'
+import { createWebHistory, createRouter } from "vue-router"
 
 const routes = [
     {
       path: '/',
-      name: 'defaultPage',
-      component: Home,
+      name: 'Home',
+      component: () => import('../components/Home.vue')
     },
+    /*
     {
         path: '/Home',
         name: 'HomePage',
-        component: Home,
+        component: () => import('../components/Home.vue')
     },
+    */
     {
         path: '/SignUp',
         name: 'SignUp',
-        component: SignUp,
+        component: () => import('../components/Pages/SignUp.vue')
     },
     
     {
         path: '/SignIn',
         name: 'SignIn',
-        component: SignIn,
+        component: () => import('../components/Pages/SignIn.vue')
     },
 
     {
         path: '/About',
         name: 'About',
-        component: About,
+        component: () => import('../components/About.vue')
     }
 ];
 
@@ -38,5 +36,5 @@ const router = createRouter({
     history: createWebHistory(),
     routes,
 });
-  
-export default router;
+
+export default router

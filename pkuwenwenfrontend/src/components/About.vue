@@ -1,7 +1,7 @@
 <template>
-<p>
+<h1>
     this is the About Page of Vue
-</p>
+</h1>
 
 </template>
 

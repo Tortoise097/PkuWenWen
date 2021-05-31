@@ -1,8 +1,22 @@
 <template>
   <div id="app">
-    <router-view></router-view>
+    <router-link to="/">Home</router-link> |
+    <router-link to="/About">About</router-link> |
+    <router-link to="/SignIn">Sign In</router-link> |
+    <router-link to="/SignUp">Sign Up</router-link>
   </div>
-  <!-- 
-      App.vue只作为一个容器，没有实际内容，实际的主页是Home.vue
-  -->
+  <div>
+      <img alt="Vue logo" src="./assets/logo.png">
+  </div>
+  <div>
+      <router-view></router-view>
+  </div>
 </template>
+
+<style>
+
+#app {
+  padding: 30px;
+  text-align: center;
+}
+</style>
