@@ -10,9 +10,13 @@
         <img alt="Vue logo" src="./logo.png">
     </div>
     <div class="ms-login">
+      <div class="ms-title">北大问问登陆</div>
         <el-form :model="param" :rules="rules" ref="login" label-width="0px" class="ms-content">
             <el-form-item prop="username">
                 <el-input v-model="param.username" placeholder="请输入用户名">
+                  <template #prepend>
+                    <el-button icon="el-icon-user"></el-button>
+                  </template>
                 </el-input>
             </el-form-item>
             <el-form-item prop="password">
@@ -22,11 +26,13 @@
                     v-model="param.password"
                     @keyup.enter="submitForm()"
                 >
-
+                  <template #prepend>
+                    <el-button icon="el-icon-lock"></el-button>
+                  </template>
                 </el-input>
                 </el-form-item>
                 <div class="login-btn">
-                    <el-button type="info" @click="submitForm()">登录</el-button>
+                    <el-button type="primary" @click="submitForm()">登录</el-button>
                 </div>
             </el-form>
     </div>
@@ -35,7 +41,7 @@
 
 <script>
 export default {
-    data: function() {
+    data() {
         return {
             param: {
                 username: '',
@@ -62,29 +68,29 @@ export default {
             })
             .then(function(response) {
               console.log(response)
-              if(response.data.login.retCode == 1){
-                _this.$message({
-                    message: response.data.login.message,
-                    type: 'success',
-                });
-
-                localStorage.setItem('ms_username', _this.param.username);
-                _this.$router.push('/SchoolIndex'); 
-                // push有问题
+              // if(response.data.login.retCode == 1){  //这行在最后需要代替下面的 if true
+              // eslint-disable-next-line no-constant-condition
+              if(true){
+                this.$message.success("登陆成功")
+                localStorage.setItem("ms_username", this.param.username)
+                this.$router.push('/SchoolIndex');
+                // push有问题,解决中
               }
               else if(response.data.login.retCode == 2) {
                 _this.$message({
                     message: response.data.login.message,
                     type: 'error',
                 });
+                return false
               }
               else {
                 _this.$message({
                     message: response.data.login.message + "！请先注册",
                     type: 'warning',
                 });
+                return false
               }
-              
+
             })
             .catch(function(response) {
               console.log(response)

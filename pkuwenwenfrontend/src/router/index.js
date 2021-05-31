@@ -11,7 +11,7 @@ const routes = [
         name: 'SignUp',
         component: () => import('../components/Pages/SignUp.vue')
     },
-    
+
     {
         path: '/SignIn',
         name: 'SignIn',
@@ -34,5 +34,15 @@ const router = createRouter({
     history: createWebHistory(),
     routes,
 });
+
+router.beforeEach((to, from, next) => {
+    document.title = `| PkuWenWen |`;
+    const role = localStorage.getItem('ms_username');
+    if (!role && to.path !== '/login') {
+        next('/login');
+    } else {
+        next();
+    }
+})
 
 export default router
