@@ -38,7 +38,6 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'myapp',
-    'rest_framework',
     'corsheaders',
 ]
 
@@ -128,3 +127,20 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/3.0/howto/static-files/
 
 STATIC_URL = '/static/'
+
+EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'  
+MAILER_EMAIL_BACKEND = EMAIL_BACKEND  
+EMAIL_HOST = 'smtp.163.com'
+EMAIL_HOST_PASSWORD = 'MRQMAKLROOUAOZSJ'  # 邮箱的密码是：'SFNG5GROUP'  ，在这里填的是授权码
+EMAIL_HOST_USER = 'se_5group@163.com'  
+EMAIL_PORT = 465  
+EMAIL_USE_SSL = True  
+DEFAULT_FROM_EMAIL = EMAIL_HOST_USER
+
+
+'''
+test_email:
+from django.core.mail import send_mail
+>>> 
+send_mail('Subject', 'Message','se_5group@163.com', ['zhanglinjuan51@163.com'], fail_silently=False)
+'''
