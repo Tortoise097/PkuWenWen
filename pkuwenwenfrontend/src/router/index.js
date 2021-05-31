@@ -27,6 +27,16 @@ const routes = [
         path: '/SchoolIndex',
         name: 'SchoolIndex',
         component: () => import('../components/Pages/SchoolIndex.vue')
+    },
+    {
+        path: '/CourseIndex',
+        name: 'CourseIndex',
+        component: () => import('../components/Pages/CourseIndex.vue')
+    },
+    {
+        path: '/Questions',
+        name: 'Questions',
+        component: () => import('../components/Pages/Questions.vue')
     }
 ];
 

@@ -1,15 +1,22 @@
 <template>
-  <h1>This is the SchoolIndex view</h1>
+  <h1>This is the Questions view</h1>
   <div class="">
     <div class="container">
       <el-tabs v-model="message">
-        <el-tab-pane :label="`全部院系(${unread.length})`" name="first">
+        <el-tab-pane :label="`全部问题(${unread.length})`" name="first">
           <el-table :data="unread" :show-header="false" style="width: 100%">
             <el-table-column>
               <template #default="scope">
                 <span class="message-title">{{scope.row.title}}</span>
               </template>
             </el-table-column>
+            <el-table-column prop="content" width="180"></el-table-column>
+            <el-table-column width="540">
+              <el-form-item label="文本框">
+                <el-input title="高赞回复" type="textarea" autosize rows="5" v-model="form.desc"></el-input>
+              </el-form-item>
+            </el-table-column>
+            <el-table-column prop="stars" width="180"></el-table-column>
             <el-table-column prop="date" width="180"></el-table-column>
             <el-table-column width="120">
               <template #default="scope">
@@ -29,7 +36,14 @@
                   <span class="message-title">{{scope.row.title}}</span>
                 </template>
               </el-table-column>
-              <el-table-column prop="date" width="150"></el-table-column>
+              <el-table-column prop="content" width="180"></el-table-column>
+              <el-table-column width="540">
+                <el-form-item label="文本框">
+                  <el-input title="高赞回复" type="textarea" autosize rows="5" v-model="form.desc"></el-input>
+                </el-form-item>
+              </el-table-column>
+              <el-table-column prop="stars" width="180"></el-table-column>
+              <el-table-column prop="date" width="180"></el-table-column>
               <el-table-column width="120">
                 <template #default="scope">
                   <el-button type="danger" @click="handleDel(scope.$index)">不再关注</el-button>
@@ -55,18 +69,29 @@ export default {
       showHeader: false,
       unread: [{
         date: '更新于 2021-04-19 20:00:00',
-        title: '中文系',
+        title: 'Question1',
+        content: "描述1",
+        stars: "233",
       },{
         date: '更新于 2021-04-19 20:00:00',
-        title: '数学科学学院',
+        title: 'Question2',
+        content: "描述2",
+        stars: "61",
       }],
       read: [{
         date: '更新于 2021-04-19 20:00:00',
-        title: '信息科学技术学院'
+        title: 'Question3',
+        content: "描述3",
+        stars: "618",
       },{
         date: '更新于 2021-04-19 20:00:00',
-        title: '物理学院'
+        title: 'Question4',
+        content: "描述4",
+        stars: "604",
       }],
+      form: {
+        desc: '这里应该有高赞回复的内容\n而且这个输入框是可以随着内容数量的变化改变大小的',
+      }
     }
   },
   methods: {
