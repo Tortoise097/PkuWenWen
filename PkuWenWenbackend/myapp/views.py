@@ -1,6 +1,7 @@
 from django.shortcuts import render
-from djongo import models
+from . import models
 from django.http import HttpResponse
+from django.views.decorators.csrf import csrf_exempt 
 from django.contrib.auth.tokens import default_token_generator
 import json
 import requests
@@ -13,6 +14,7 @@ import random
 # Create your views here.
 
 # 注册（使用了Django内助的邮箱验证功能）
+@csrf_exempt
 def register(request):
     userName = request.POST.get('userName', 'username')
     password = request.POST.get('password', 'xxx')
@@ -24,7 +26,7 @@ def register(request):
 
     if obj.count() == 0 and objmail.count() == 0:
         mailret = send_mail('PkuWenWen注册', '您正在进行PkuWenWen注册，如果不是您亲自操作，请及时联系本邮箱',
-                            'genesis_sss@163.com', [email], fail_silently=False)
+                            'se_5group@163.com', [email], fail_silently=False)
 
         if mailret == 1:
             models.UserModel.objects.create(userName=userName, password=password,email=email)

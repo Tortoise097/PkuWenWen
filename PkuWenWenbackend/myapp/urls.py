@@ -5,5 +5,5 @@ from . import views
 urlpatterns = [
     path('register', views.register),
     path('login', views.login),
-    path('notebook', view.notebook), # this is used to test
+    # path('notebook', view.notebook), # this is used to test
 ]
