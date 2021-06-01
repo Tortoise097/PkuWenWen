@@ -7,7 +7,7 @@
           <el-table :data="unread" :show-header="false" style="width: 100%">
             <el-table-column>
               <template #default="scope">
-                <span class="message-title">{{scope.row.title}}</span>
+                <span class="message-title" @click="openSchool(scope.row)">{{scope.row.title}}</span>
               </template>
             </el-table-column>
             <el-table-column prop="date" width="180"></el-table-column>
@@ -56,16 +56,24 @@ export default {
       unread: [{
         date: '更新于 2021-04-19 20:00:00',
         title: '中文系',
+        link: 'zhongwen',
+        id: 1,
       },{
         date: '更新于 2021-04-19 20:00:00',
         title: '数学科学学院',
+        link: 'shuxue',
+        id: 2,
       }],
       read: [{
         date: '更新于 2021-04-19 20:00:00',
-        title: '信息科学技术学院'
+        title: '信息科学技术学院',
+        link: 'xinxi',
+        id: 3,
       },{
         date: '更新于 2021-04-19 20:00:00',
-        title: '物理学院'
+        title: '物理学院',
+        link: 'wuli',
+        id: 4,
       }],
     }
   },
@@ -78,6 +86,13 @@ export default {
     handleDel(index) {
       const item = this.read.splice(index, 1);
       this.unread = item.concat(this.unread);
+    },
+    openSchool (school) {
+      console.log(`dash: ${school.id}`);
+      this.$router.push({
+        name: 'CourseIndex',
+        params: {url:school.link,id:school.id}
+      })
     },
   },
   computed: {

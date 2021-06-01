@@ -37,7 +37,12 @@ const routes = [
         path: '/Questions',
         name: 'Questions',
         component: () => import('../components/Pages/Questions.vue')
-    }
+    },
+    {
+        path: '/Dashboard',
+        name: 'Dashboard',
+        component: () => import('../components/dashboard')
+    },
 ];
 
 const router = createRouter({
