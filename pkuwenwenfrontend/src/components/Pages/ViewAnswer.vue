@@ -7,7 +7,11 @@
         <el-container>
           <el-header class="header">题目</el-header>
           <el-main class="main">题干详细描述</el-main>
-          <el-footer class="footer">点赞投币收藏区</el-footer>
+          <el-footer class="footer">
+            <el-button type="primary" plain @click="handleQuestionPro()"><i class="el-icon-circle-check el-icon--left"></i>{{curQuestion.proNum}}赞</el-button>
+            <el-button type="danger" plain @click="handleQuestionCon()"><i class="el-icon-circle-close el-icon--left"></i>{{curQuestion.conNum}}踩</el-button>
+            <el-button type="warning" plain @click="handleQuestionSubscribe()"><i class="el-icon-star-off el-icon--left"></i>{{curQuestion.subscribeNum}}收藏</el-button>
+          </el-footer>
         </el-container>
       </el-container>
 
@@ -16,7 +20,11 @@
         <el-container>
           <el-header class="header">回答标题</el-header>
           <el-main class="main">回答正文</el-main>
-          <el-footer class="footer">点赞投币收藏区</el-footer>
+          <el-footer class="footer">
+            <el-button type="primary" plain @click="handleAnswerPro()"><i class="el-icon-circle-check el-icon--left"></i>{{curAnswer.proNum}}赞</el-button>
+            <el-button type="danger" plain @click="handleAnswerCon()"><i class="el-icon-circle-close el-icon--left"></i>{{curAnswer.conNum}}踩</el-button>
+            <el-button type="warning" plain @click="handleAnswerSubscribe"><i class="el-icon-star-off el-icon--left"></i>{{curAnswer.subscribeNum}}收藏</el-button>
+          </el-footer>
         </el-container>
       </el-container>
 
@@ -65,7 +73,7 @@ export default {
       this.curAnswer.proNum += 1;
       console.log(this.curAnswer.proNum);
     },
-    handleQAnswerCon() {
+    handleAnswerCon() {
       this.curAnswer.conNum += 1;
       console.log(this.curAnswer.conNum);
     },
@@ -82,7 +90,7 @@ export default {
 .header, .footer {
   background-color: #B3C0D1;
   color: #333;
-  text-align: center;
+  text-align: left;
   line-height: 60px;
 }
 
