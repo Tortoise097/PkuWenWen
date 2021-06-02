@@ -43,6 +43,11 @@ const routes = [
         name: 'Dashboard',
         component: () => import('../components/dashboard')
     },
+    {
+        path: '/ViewAnswer',
+        name: 'ViewAnswer',
+        component: () => import ('../components/Pages/ViewAnswer')
+    }
 ];
 
 const router = createRouter({
