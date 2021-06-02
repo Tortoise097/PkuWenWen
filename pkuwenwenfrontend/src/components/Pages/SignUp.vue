@@ -76,7 +76,7 @@ export default {
                     message: response.data.register.message + "！请登录",
                     type: 'success',
                 });
-                _this.$router.push('/login');
+                _this.$router.push('/SignIn');
               }
               else {
                 _this.$message({

@@ -92,7 +92,7 @@ WSGI_APPLICATION = 'PkuWenWenbackend.wsgi.application'
 
 DATABASES = {
     'default': {
-        'ENGINE': 'djongo',
+        'ENGINE': 'django.db.backends.sqlite3',
         'NAME' : 'PkuWenWendatabase', #your database
     }
 }
@@ -150,4 +150,18 @@ test_email:
 from django.core.mail import send_mail
 >>> 
 send_mail('Subject', 'Message','se_5group@163.com', ['zhanglinjuan51@163.com'], fail_silently=False)
+'''
+
+'''
+superuser:
+NAME:PkuWenWenAdmin
+password: administrators_yeah!
+email:example@pku.edu.cn
+'''
+
+'''
+test:create user:
+Tortoise
+zhanglinjuan51@163.com
+xxxxxxxxxx
 '''
