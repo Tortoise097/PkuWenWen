@@ -59,14 +59,14 @@ export default {
       },{
         date: '更新于 2021-04-19 20:00:00',
         title: '编译原理',
-      }],
-      read: [{
+      }, {
         date: '更新于 2021-04-19 20:00:00',
         title: '计算机系统导论'
       },{
         date: '更新于 2021-04-19 20:00:00',
         title: '数学分析III'
       }],
+      read: this.$route.params.courses
     }
   },
   methods: {
