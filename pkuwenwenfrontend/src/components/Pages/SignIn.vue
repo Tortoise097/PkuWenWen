@@ -66,12 +66,11 @@ export default {
               data: post_request,
               headers: { 'Content-Type': 'multipart/form-data' },
             })
-            .then(function(response) {
-              alert('this is the response');
+            .then((response) =>{
               console.log(response)
               // if(response.data.login.retCode == 1){  //这行在最后需要代替下面的 if true
               // eslint-disable-next-line no-constant-condition
-              if(true){
+              if(response.data.login.retCode == 1){
                 alert('登陆成功');
                 /*
                 this.$message({
@@ -81,7 +80,6 @@ export default {
                 */
                 localStorage.setItem("ms_username", this.param.username)
                 this.$router.push('/SchoolIndex');
-                // push有问题,解决中
               }
               else if(response.data.login.retCode == 2) {
                 _this.$message({
