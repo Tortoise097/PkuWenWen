@@ -84,7 +84,7 @@ export default {
                 });
               }
             })
-            .catch(function(response) {
+            .catch((response) => {
               console.log(response)
             });
         },

@@ -7,7 +7,7 @@
           <el-table :data="unread" :show-header="false" style="width: 100%">
             <el-table-column>
               <template #default="scope">
-                <span class="message-title" @click="openSchool(scope.row)">{{scope.row.title}}</span>
+                <span class="message-title" @click="openSchool(scope.row.title)">{{scope.row.title}}</span>
               </template>
             </el-table-column>
             <el-table-column prop="date" width="180"></el-table-column>
@@ -26,7 +26,7 @@
             <el-table :data="read" :show-header="false" style="width: 100%">
               <el-table-column>
                 <template #default="scope">
-                  <span class="message-title">{{scope.row.title}}</span>
+                  <span class="message-title" @click="openSchool(scope.row.title)">{{scope.row.title}}</span>
                 </template>
               </el-table-column>
               <el-table-column prop="date" width="150"></el-table-column>
@@ -88,11 +88,41 @@ export default {
       this.unread = item.concat(this.unread);
     },
     openSchool (school) {
-      console.log(`dash: ${school.id}`);
-      this.$router.push({
-        name: 'CourseIndex',
-        params: {url:school.link,id:school.id}
-      })
+      // console.log(`dash: ${school.id}`);
+      // this.$router.push({
+      //   name: 'CourseIndex',
+      //   params: {url:school.link,id:school.id}
+      // })
+      var post_request = new FormData()
+      post_request.append('school', school)
+      let _this = this;
+      this.$http
+          .request({
+            url: this.$url + '/openSchool',
+            method: 'post',
+            data: post_request,
+            headers: { 'Content-Type': 'multipart/form-data' },
+          })
+          .then((response) =>{
+            console.log(response)
+            // if(response.data.login.retCode == 1){  //这行在最后需要代替下面的 if true
+            // eslint-disable-next-line no-constant-condition
+            if(response.data.login.retCode == 1){
+              alert('get courses success');
+              this.$router.push({name: 'CourseIndex', params: {courses: response.data.courses}});
+            }
+            else {
+              _this.$message({
+                message: "openSchool()failed",
+                type: 'warning',
+              });
+              return false
+            }
+          })
+          .catch((response) => {
+            console.log(response)
+          });
+      //openSchool end
     },
   },
   computed: {
