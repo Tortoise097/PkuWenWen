@@ -1,13 +1,13 @@
 <template>
-  <h1>This is the SchoolIndex view</h1>
+  <h1>This is the CourseIndex view</h1>
   <div class="">
     <div class="container">
       <el-tabs v-model="message">
-        <el-tab-pane :label="`全部院系(${unread.length})`" name="first">
+        <el-tab-pane :label="`全部课程(${unread.length})`" name="first">
           <el-table :data="unread" :show-header="false" style="width: 100%">
             <el-table-column>
               <template #default="scope">
-                <span class="message-title" @click="openSchool(scope.row)">{{scope.row.title}}</span>
+                <span class="message-title">{{scope.row.title}}</span>
               </template>
             </el-table-column>
             <el-table-column prop="date" width="180"></el-table-column>
@@ -21,7 +21,7 @@
             <el-button type="primary">全部关注</el-button>
           </div>
         </el-tab-pane>
-        <el-tab-pane :label="`我关注的院系(${read.length})`" name="second">
+        <el-tab-pane :label="`我关注的课程(${read.length})`" name="second">
           <template v-if="message === 'second'">
             <el-table :data="read" :show-header="false" style="width: 100%">
               <el-table-column>
@@ -55,25 +55,17 @@ export default {
       showHeader: false,
       unread: [{
         date: '更新于 2021-04-19 20:00:00',
-        title: '中文系',
-        link: 'zhongwen',
-        id: 1,
+        title: '软件工程',
       },{
         date: '更新于 2021-04-19 20:00:00',
-        title: '数学科学学院',
-        link: 'shuxue',
-        id: 2,
+        title: '编译原理',
       }],
       read: [{
         date: '更新于 2021-04-19 20:00:00',
-        title: '信息科学技术学院',
-        link: 'xinxi',
-        id: 3,
+        title: '计算机系统导论'
       },{
         date: '更新于 2021-04-19 20:00:00',
-        title: '物理学院',
-        link: 'wuli',
-        id: 4,
+        title: '数学分析III'
       }],
     }
   },
@@ -86,13 +78,6 @@ export default {
     handleDel(index) {
       const item = this.read.splice(index, 1);
       this.unread = item.concat(this.unread);
-    },
-    openSchool (school) {
-      console.log(`dash: ${school.id}`);
-      this.$router.push({
-        name: 'CourseIndex',
-        params: {url:school.link,id:school.id}
-      })
     },
   },
   computed: {
