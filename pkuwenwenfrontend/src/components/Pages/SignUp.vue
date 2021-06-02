@@ -13,14 +13,14 @@
         <el-form :model="param" :rules="rules" ref="login" label-width="0px" class="ms-content">
                 <el-form-item prop="username">
                     <el-input v-model="param.username" placeholder="请输入用户名">
-                        
+
                     </el-input>
                 </el-form-item>
                 <el-form-item prop="emali">
                     <el-input v-model="param.email" placeholder="请输入邮箱">
-                       
                     </el-input>
                 </el-form-item>
+
                 <el-form-item prop="password">
                     <el-input
                         type="password"
@@ -28,7 +28,6 @@
                         v-model="param.password"
                         @keyup.enter="registerForm()"
                     >
-                        
                     </el-input>
                 </el-form-item>
                 <div class="login-btn">
@@ -69,7 +68,7 @@ export default {
               data: post_request,
               headers: { 'Content-Type': 'multipart/form-data' },
             })
-            .then(function(response) {
+            .then((response) => {
               console.log(response)
               if(response.data.register.retCode == 1){
                 _this.$message({
@@ -84,7 +83,6 @@ export default {
                     type: 'error',
                 });
               }
-              
             })
             .catch(function(response) {
               console.log(response)
