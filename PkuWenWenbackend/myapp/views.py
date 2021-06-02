@@ -1,6 +1,6 @@
 from django.shortcuts import render
 from . import models
-from django.http import HttpResponse
+from django.http import HttpResponse,JsonResponse
 from django.views.decorators.csrf import csrf_exempt 
 from django.contrib.auth.tokens import default_token_generator
 import json
@@ -44,7 +44,7 @@ def register(request):
         res['retCode'] = 0
         res['message'] = '用户名或邮箱已注册'
 
-    return HttpResponse(json.dumps({'register': res}))
+    return JsonResponse({'register': res})
 
 # 登录：登录之后会自动跳转到SchoolIndex页
 @csrf_exempt
@@ -69,5 +69,6 @@ def login(request):
             res['retCode'] = 2
             res['message'] = '密码错误'
             print("密码错误")
-    return HttpResponse(json.dumps({'login': res}))
+    return JsonResponse({'login': res})
+    # return HttpResponse(json.dumps({'login': res}))
 

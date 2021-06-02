@@ -55,7 +55,6 @@ export default {
     },
     methods: {
         submitForm() {
-            alert('登陆成功');
             var post_request = new FormData()
             post_request.append('userName', this.param.username)
             post_request.append('password', this.param.password)
@@ -68,6 +67,7 @@ export default {
               headers: { 'Content-Type': 'multipart/form-data' },
             })
             .then(function(response) {
+              alert('this is the response');
               console.log(response)
               // if(response.data.login.retCode == 1){  //这行在最后需要代替下面的 if true
               // eslint-disable-next-line no-constant-condition

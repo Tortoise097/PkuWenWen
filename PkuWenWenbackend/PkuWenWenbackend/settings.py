@@ -38,7 +38,7 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'myapp',
-    # 'corsheaders',
+    'corsheaders',
 ]
 
 MIDDLEWARE = [
@@ -49,12 +49,21 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
-    # 'corsheaders.middleware.CorsMiddleware',
+    'corsheaders.middleware.CorsMiddleware',
 ]
 
 ######################### Add these about CORS #####################################
-# CORS_ORIGIN_ALLOW_ALL = False
-# CORS_ORIGIN_WHITELIST = ("http://localhost:8080")
+CORS_ORIGIN_ALLOW_ALL = False
+# CORS_ORIGIN_WHITELIST = ("127.0.0.1:8080")
+CORS_ALLOWED_ORIGINS = [
+    "http://10.0.196.147:8080",
+]
+
+CORS_ALLOW_METHODS = (
+    'GET',
+    'POST',
+
+)
 ######################### Add these about CORS #####################################
 
 ROOT_URLCONF = 'PkuWenWenbackend.urls'
