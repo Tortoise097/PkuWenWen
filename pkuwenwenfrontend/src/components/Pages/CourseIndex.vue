@@ -1,8 +1,11 @@
 <template>
   <h1>This is the CourseIndex view</h1>
   <h1>{{$route.params.courses}}第二</h1>
-  <h2>{{tmpMessage}}第三</h2>
-  <h2>{{paramsFromFormerPage}}第四</h2>
+  <h1>{{$route.params}}第三</h1>
+  <h2>{{tmpMessage}}第四</h2>
+  <h2>{{paramsFromFormerPage}}第五</h2>
+  <el-button @click="handleClick()">handleClick</el-button>
+  <el-button @click="handleClick2()">handleClick2</el-button>
   <div class="">
     <div class="container">
       <el-tabs v-model="message">
@@ -71,11 +74,18 @@ export default {
         title: '数学分析III',
       }],
       tmpMessage: this.$route.params,
-      //read: JSON.parse(this.route.params.toString()),
-      read: this.$route.params.courses,
+      read: JSON.parse(this.$route.params.courses.toString()),
+      //read: this.$route.params.courses,
+      readparse: JSON.parse(this.$route.params.courses.toString()),
     }
   },
   methods: {
+    handleClick(){
+      console.log(this.read)
+    },
+    handleClick2(){
+      console.log(this.readparse)
+    },
     handleRead(index) {
       const item = this.unread.splice(index, 1);
       console.log(item);
