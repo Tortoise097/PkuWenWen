@@ -1,4 +1,5 @@
 <template>
+<div>
   <div id = 'logoimg'>
   <img alt="Vue logo" src="./logo.png" height="106" width="256">
   </div>
@@ -49,7 +50,7 @@
       </el-tabs>
     </div>
   </div>
-
+</div>
 </template>
 
 <script>
