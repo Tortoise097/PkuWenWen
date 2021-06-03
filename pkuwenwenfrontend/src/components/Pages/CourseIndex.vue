@@ -7,7 +7,7 @@
           <el-table :data="unread" :show-header="false" style="width: 100%">
             <el-table-column>
               <template #default="scope">
-                <span class="message-title">{{scope.row.title}}</span>
+                <span class="message-title" @click="openCourse(scope.row.title)">{{scope.row.title}}</span>
               </template>
             </el-table-column>
             <el-table-column prop="date" width="180"></el-table-column>
@@ -26,7 +26,7 @@
             <el-table :data="read" :show-header="false" style="width: 100%">
               <el-table-column>
                 <template #default="scope">
-                  <span class="message-title">{{scope.row.title}}</span>
+                  <span class="message-title" @click="openCourse(scope.row.title)">{{scope.row.title}}</span>
                 </template>
               </el-table-column>
               <el-table-column prop="date" width="150"></el-table-column>
@@ -66,7 +66,7 @@ export default {
         date: '更新于 2021-04-19 20:00:00',
         title: '数学分析III'
       }],
-      read: this.$route.params.courses
+      read: [],
     }
   },
   methods: {
@@ -79,6 +79,13 @@ export default {
       const item = this.read.splice(index, 1);
       this.unread = item.concat(this.unread);
     },
+    openCourse(Course) {
+      console.log(`dash: ${Course.id}`);
+      this.$router.push({
+        name: 'Questions',
+        params: {url:Course.link,id:Course.id}
+      })
+    }
   },
   computed: {
     unreadNum(){
