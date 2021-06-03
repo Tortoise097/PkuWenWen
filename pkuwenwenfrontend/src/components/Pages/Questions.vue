@@ -7,7 +7,7 @@
           <el-table :data="unread" :show-header="false" style="width: 100%">
             <el-table-column>
               <template #default="scope">
-                <span class="message-title"><router-link to="/Questions/IWantToUseVarHere">{{scope.row.title}}</router-link></span>
+                <span class="message-title"><router-link to="/ViewAnswer">{{scope.row.title}}</router-link></span>
               </template>
             </el-table-column>
             <el-table-column prop="content" width="180"></el-table-column>
@@ -28,7 +28,7 @@
             <el-button type="primary">全部关注</el-button>
           </div>
         </el-tab-pane>
-        <el-tab-pane :label="`我关注的院系(${read.length})`" name="second">
+        <el-tab-pane :label="`我关注的问题(${read.length})`" name="second">
           <template v-if="message === 'second'">
             <el-table :data="read" :show-header="false" style="width: 100%">
               <el-table-column>

@@ -1,5 +1,8 @@
 <template>
   <h1>This is the CourseIndex view</h1>
+  <h1>{{$route.params.courses}}第二</h1>
+  <h2>{{tmpMessage}}第三</h2>
+  <h2>{{paramsFromFormerPage}}第四</h2>
   <div class="">
     <div class="container">
       <el-tabs v-model="message">
@@ -53,6 +56,7 @@ export default {
     return {
       message: 'first',
       showHeader: false,
+      paramsFromFormerPage: this.$route.params.courses,
       unread: [{
         date: '更新于 2021-04-19 20:00:00',
         title: '软件工程',
@@ -61,12 +65,13 @@ export default {
         title: '编译原理',
       }, {
         date: '更新于 2021-04-19 20:00:00',
-        title: '计算机系统导论'
+        title: '计算机系统导论',
       },{
         date: '更新于 2021-04-19 20:00:00',
-        title: '数学分析III'
+        title: '数学分析III',
       }],
       read: [],
+      tmpMessage: this.$route.params
     }
   },
   methods: {
@@ -90,6 +95,13 @@ export default {
   computed: {
     unreadNum(){
       return this.unread.length;
+    },
+    newCourses(){
+      var nc = []
+      const courses = this.$route.params['courses']
+      alert(courses)
+      nc.concat({date: courses['date'], title: courses['title']})
+      return nc
     }
   }
 }
