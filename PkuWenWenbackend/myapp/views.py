@@ -76,7 +76,7 @@ def login(request):
 @csrf_exempt
 def openSchool(request):
     schoolName = request.POST.get('school', '信息科学技术学院')
-    courses = {'date': '更新于 2021-06-03 20:00:00','title': 'course1 from backend'}
+    courses = {'date': '更新于 2021-06-03 20:00:00', 'title': 'course from backend'}
     courses = json.JSONEncoder(ensure_ascii=False).encode(courses)
     print("将courses发回前端")
     return JsonResponse({'retCode': 1, 'courses': courses})
