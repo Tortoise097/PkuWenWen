@@ -21,24 +21,24 @@ class Reply(models.Model):
     conNum = models.IntegerField() # 点踩数
     replyer = models.CharField(max_length=32) # 用户名，在后台记录，在前台匿名
     qid = models.IntegerField() #这个回复所属的问题在数据库里的id
-    content = models.CharField() #不限长度
+    content = models.TextField() 
 
 # 问题
 class Question(models.Model):
     publisher = models.CharField(max_length=32, default='userName') # 提问者：用户名
     # 采用匿名提问的方式，后台记录提问者，但前台不显示提问者相关信息
     title = models.CharField(max_length=50, default='xxx')  # 提问的题目
-    content = models.CharField(default = '...') # 提问的内容
+    content = models.TextField(default = '...') # 提问的内容
     cid = models.IntegerField() # 问题所属的课程在数据库里的id
 
 
 # 课程
 class Course(models.Model):
     sid = models.IntegerField() # 课程所属院系
-    course_id = models.TextField(max_length = 25, default = '0000') #课程号
+    course_id = models.CharField(max_length = 25, default = '0000') #课程号
     course_name = models.TextField(max_length = 25) #课程名
 
 
 # 院系
 class School(models.Model):
-    school_name = models.TextField() #院系名
+    school_name = models.CharField(max_length = 30) #院系名

@@ -1,5 +1,10 @@
 <template>
-  <h1>This is the CourseIndex view</h1>
+  <div id = 'logoimg'>
+  <img alt="Vue logo" src="./logo.png" height="106" width="256">
+  </div>
+  <div id = 'text'>
+  <p> 信息科学技术学院 </p>
+  </div>
   <div class="">
     <div class="container">
       <el-tabs v-model="message">
@@ -44,6 +49,7 @@
       </el-tabs>
     </div>
   </div>
+
 </template>
 
 <script>
@@ -66,7 +72,8 @@ export default {
         date: '更新于 2021-04-19 20:00:00',
         title: '数学分析III'
       }],
-      read: this.$route.params.courses
+      read :[{}]
+      //read: this.$route.params.courses
     }
   },
   methods: {

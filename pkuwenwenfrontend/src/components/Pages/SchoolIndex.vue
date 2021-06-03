@@ -1,5 +1,11 @@
 <template>
-  <h1>This is the SchoolIndex view</h1>
+<div>
+  <div id = 'logoimg'>
+  <img alt="Vue logo" src="./logo.png" height="106" width="256">
+  </div>
+  <div id = 'text'>
+  <p> School Index </p>
+  </div>
   <div class="">
     <div class="container">
       <el-tabs v-model="message">
@@ -44,6 +50,7 @@
       </el-tabs>
     </div>
   </div>
+</div>
 </template>
 
 <script>
@@ -88,11 +95,12 @@ export default {
       this.unread = item.concat(this.unread);
     },
     openSchool (school) {
-      // console.log(`dash: ${school.id}`);
-      // this.$router.push({
-      //   name: 'CourseIndex',
-      //   params: {url:school.link,id:school.id}
-      // })
+       console.log(`dash: ${school.id}`);
+       this.$router.push({
+         name: 'CourseIndex',
+         params: {url:school.link,id:school.id}
+       })
+      /*
       var post_request = new FormData()
       post_request.append('school', school)
       let _this = this;
@@ -123,6 +131,7 @@ export default {
             console.log(response)
           });
       //openSchool end
+      */
     },
   },
   computed: {
@@ -141,5 +150,13 @@ export default {
 .handle-row{
   margin-top: 30px;
 }
+/*
+#logoimg {
+  text-align: left;
+}
+#text {
+  text-align: right;
+}
+*/
 </style>
 

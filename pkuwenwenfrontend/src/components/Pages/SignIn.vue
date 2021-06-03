@@ -58,7 +58,7 @@ export default {
             var post_request = new FormData()
             post_request.append('userName', this.param.username)
             post_request.append('password', this.param.password)
-            let _this = this;
+            //let _this = this;
             this.$http
             .request({
               url: this.$url + '/login',
@@ -82,17 +82,21 @@ export default {
                 this.$router.push('/SchoolIndex');
               }
               else if(response.data.login.retCode == 2) {
-                _this.$message({
+                /*_this.$message({
                     message: response.data.login.message,
                     type: 'error',
                 });
+                */
+               alert('密码错误！');
                 return false
               }
               else {
+                /*
                 _this.$message({
                     message: response.data.login.message + "！请先注册",
                     type: 'warning',
-                });
+                });*/
+                alert('用户不存在，请先注册！');
                 return false
               }
 
