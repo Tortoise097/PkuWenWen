@@ -43,18 +43,16 @@ export default {
       method: 'get',
     })
     .then((response) =>{
-      console.log('get return data')
-      console.log(response)
-      //console.log(response.data.retdata)      
+      //console.log('get return data')
+      console.log(response)    
       this.SchoolList = response.data.schoollist
     })
   },
   methods: {
-    openSchool (school) {
-       console.log(`dash: ${school.id}`);
+    openSchool (schoolname) {
+       console.log(`dash: ${schoolname}`);
        this.$router.push({
-         name: 'CourseIndex',
-         params: {url:school.link,id:school.id}
+         path: '/'+ schoolname + '/CourseIndex',
        })
     },
   },

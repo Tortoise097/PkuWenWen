@@ -79,6 +79,15 @@ def getSchoolIndex(request):
     retdata['schoollist'] = list(schools)
     return JsonResponse(retdata)
 
+@csrf_exempt
+def getCourseIndex(request):
+    SchoolName = request.POST.get('schoolname')
+    print(SchoolName)
+    which_school = models.School.objects.get(school_name = SchoolName)
+    courses = models.Course.objects.filter(sid = which_school.id).values()
+    retdata = {}
+    retdata['courselist'] = list(courses)
+    return JsonResponse(retdata)
 
 @csrf_exempt
 def openSchool(request):

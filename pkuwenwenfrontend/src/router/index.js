@@ -29,12 +29,12 @@ const routes = [
         component: () => import('../components/Pages/SchoolIndex.vue')
     },
     {
-        path: '/CourseIndex',
+        path: '/:school/CourseIndex', //使用动态链接，school是院系名
         name: 'CourseIndex',
         component: () => import('../components/Pages/CourseIndex.vue')
     },
     {
-        path: '/Questions',
+        path: '/:school/:course/Questions',
         name: 'Questions',
         component: () => import('../components/Pages/Questions.vue')
     },
