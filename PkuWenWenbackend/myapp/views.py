@@ -10,6 +10,7 @@ from django.core.mail import send_mail
 from django.conf import settings
 import re
 import random
+import json
 
 # Create your views here.
 
@@ -71,6 +72,12 @@ def login(request):
             print("密码错误")
     return JsonResponse({'login': res})
     # return HttpResponse(json.dumps({'login': res}))
+@csrf_exempt
+def getSchoolIndex(request):
+    retdata = {}
+    schools = models.School.objects.values()
+    retdata['schoollist'] = list(schools)
+    return JsonResponse(retdata)
 
 
 @csrf_exempt
@@ -114,3 +121,13 @@ def submitQuestion(request):
     questionDetail = request.POST.get('detail', '缺少问题描述')
     # 此处应该把问题存到数据库里
     return JsonResponse({'retCode': 1, 'title': questionTitle, 'detail': questionDetail})
+
+'''
+这个关注课程功能不仅不重要而且很麻烦我先不写了。
+@csrf_exempt
+def AddFollowCourse(request):
+    course_name = request.POST.get('course_name')
+    user_name = request.POST.get('userName')
+    user_obj = models.UserModel.objects.get(userName = user_name)
+    user_obj.
+'''

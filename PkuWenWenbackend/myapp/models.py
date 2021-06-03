@@ -40,7 +40,7 @@ class Question(models.Model):
 class Course(models.Model):
     sid = models.IntegerField() # 课程所属院系
     course_id = models.CharField(max_length = 25, default = '0000') #课程号
-    course_name = models.TextField(max_length = 25) #课程名
+    course_name = models.CharField(max_length = 25) #课程名
 
 
 # 院系
