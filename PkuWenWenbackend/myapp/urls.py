@@ -8,4 +8,5 @@ urlpatterns = [
     path('openSchool', views.openSchool),
     path('openCourse', views.openCourse),
     path('openQuestion', views.openQuestion),
+    path('submitQuestion', views.submitQuestion),
 ]

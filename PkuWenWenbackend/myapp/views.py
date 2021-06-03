@@ -104,3 +104,13 @@ def openQuestion(request):
     curAnswer = json.JSONEncoder(ensure_ascii=False).encode(curAnswer)
 
     return JsonResponse({'retCode': 1, 'curQuestion': curQuestion, 'curAnswer': curAnswer})
+
+
+@csrf_exempt
+def submitQuestion(request):
+    questionTitle = request.POST.get('title', '缺少标题')
+    questionDate1 = request.POST.get('date1', '0000-00-00')
+    questionDate2 = request.POST.get('date2', '00:00:00')
+    questionDetail = request.POST.get('detail', '缺少问题描述')
+    # 此处应该把问题存到数据库里
+    return JsonResponse({'retCode': 1, 'title': questionTitle, 'detail': questionDetail})
