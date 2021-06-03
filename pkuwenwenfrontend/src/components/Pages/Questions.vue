@@ -12,9 +12,11 @@
             </el-table-column>
             <el-table-column prop="content" width="180"></el-table-column>
             <el-table-column width="540">
-              <el-form-item label="文本框">
-                <el-input title="高赞回复" type="textarea" autosize rows="5" v-model="form.desc"></el-input>
-              </el-form-item>
+              <el-form>
+                <el-form-item label="文本框">
+                  <el-input title="高赞回复" type="textarea" autosize rows="5" v-model="form.desc"></el-input>
+                </el-form-item>
+              </el-form>
             </el-table-column>
             <el-table-column prop="stars" width="180"></el-table-column>
             <el-table-column prop="date" width="180"></el-table-column>
@@ -38,9 +40,11 @@
               </el-table-column>
               <el-table-column prop="content" width="180"></el-table-column>
               <el-table-column width="540">
-                <el-form-item label="文本框">
-                  <el-input title="高赞回复" type="textarea" autosize rows="5" v-model="form.desc"></el-input>
-                </el-form-item>
+                <el-form>
+                  <el-form-item label="文本框">
+                    <el-input title="高赞回复" type="textarea" autosize rows="5" v-model="form.desc"></el-input>
+                  </el-form-item>
+                </el-form>
               </el-table-column>
               <el-table-column prop="stars" width="180"></el-table-column>
               <el-table-column prop="date" width="180"></el-table-column>
