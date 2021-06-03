@@ -101,7 +101,6 @@ openSchool (school) {
    in the backend in `PkuWenWenbackend/PkuWenWenbackend/urls.py` you can see `path('', include('myapp.urls'))`' in `urlpatterns` \
    which means the urls defined in `PkuWenWen/myapp/urls` was used with no prepend (the `''`means the prepend is empty )\
    so let's look at `PkuWenWen/myapp/urls`
-   
 ```python
 from django.urls import path
 
@@ -214,7 +213,6 @@ please be carefull, the `JsonResponse` is soo weak that I only dare to use it in
 3. Now the backend returns and the frontend continue from the `then` statement mentioned at the end of part 1\
    it got the data that it needs and do something else\
    in this case, we redirect to the new route namely `CourseIndex` and passing `courses` as a route parameter 
-   
 ```javascript
         })
         .then((response) => {

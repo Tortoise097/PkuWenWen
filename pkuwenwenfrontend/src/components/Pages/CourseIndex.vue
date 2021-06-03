@@ -79,13 +79,40 @@ export default {
       const item = this.read.splice(index, 1);
       this.unread = item.concat(this.unread);
     },
-    openCourse(Course) {
-      console.log(`dash: ${Course.id}`);
-      this.$router.push({
-        name: 'Questions',
-        params: {url:Course.link,id:Course.id}
-      })
-    }
+    openCourse(course) {
+      // console.log(`dash: ${Course.id}`);
+      // this.$router.push({
+      //   name: 'Questions',
+      //   params: {url:Course.link,id:Course.id}
+      // })
+      var post_request = new FormData()
+      post_request.append('course', course)
+      let _this = this
+      this.$http
+          .request({
+            url: this.$url + '/openCourse',
+            method: 'post',
+            data: post_request,
+            headers: {'Content-Type': 'multipart/form-data'},
+          })
+          .then((response) => {
+            console.log(response)
+            if(response.data.retCode === 1){
+              alert('get questions success')
+              const questions = response.data.questions
+              this.$router.push({name: 'Questions', params: {questions}})
+            }else{
+              _this.$message({
+                message: "openCourse() failed",
+                type: 'warning',
+              })
+              return false
+            }
+          })
+          .catch((response) => {
+            console.log(response)
+          })
+    }//openCourse() end
   },
   computed: {
     unreadNum(){

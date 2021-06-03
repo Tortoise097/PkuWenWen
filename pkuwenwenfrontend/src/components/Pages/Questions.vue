@@ -7,7 +7,7 @@
           <el-table :data="unread" :show-header="false" style="width: 100%">
             <el-table-column>
               <template #default="scope">
-                <span class="message-title"><router-link to="/ViewAnswer">{{scope.row.title}}</router-link></span>
+                <span class="message-title" @click="openQuestion(scope.row.title)">{{scope.row.title}}</span>
               </template>
             </el-table-column>
             <el-table-column prop="content" width="180"></el-table-column>
@@ -83,8 +83,7 @@ export default {
         content: "描述2",
         stars: "61",
         link: 'q2',
-      }],
-      read: [{
+      },{
         date: '更新于 2021-04-19 20:00:00',
         title: 'Question3',
         content: "描述3",
@@ -97,6 +96,7 @@ export default {
         stars: "604",
         link: 'q4',
       }],
+      read: JSON.parse(this.$route.params.questions.toString()),
       form: {
         desc: '这里应该有高赞回复的内容\n而且这个输入框是可以随着内容数量的变化改变大小的',
       }
@@ -112,6 +112,41 @@ export default {
       const item = this.read.splice(index, 1);
       this.unread = item.concat(this.unread);
     },
+    openQuestion(question) {
+      // console.log(`dash: ${Course.id}`);
+      // this.$router.push({
+      //   name: 'Questions',
+      //   params: {url:Course.link,id:Course.id}
+      // })
+      var post_request = new FormData()
+      post_request.append('question', question)
+      let _this = this
+      this.$http
+          .request({
+            url: this.$url + '/openQuestion',
+            method: 'post',
+            data: post_request,
+            headers: {'Content-Type': 'multipart/form-data'},
+          })
+          .then((response) => {
+            console.log(response)
+            if(response.data.retCode === 1){
+              alert('get questions success')
+              const curQuestion = response.data.curQuestion
+              const curAnswer = response.data.curAnswer
+              this.$router.push({name: 'ViewAnswer', params: {curQuestion: curQuestion, curAnswer: curAnswer}})
+            }else{
+              _this.$message({
+                message: "openQuestion() failed",
+                type: 'warning',
+              })
+              return false
+            }
+          })
+          .catch((response) => {
+            console.log(response)
+          })
+    }//openCourse() end
   },
   computed: {
     unreadNum(){
