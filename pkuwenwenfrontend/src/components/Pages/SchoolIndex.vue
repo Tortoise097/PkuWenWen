@@ -111,13 +111,14 @@ export default {
             data: post_request,
             headers: { 'Content-Type': 'multipart/form-data' },
           })
-          .then((response) =>{
+          .then((response) => {
             console.log(response)
             // if(response.data.login.retCode == 1){  //这行在最后需要代替下面的 if true
             // eslint-disable-next-line no-constant-condition
-            if(response.data.login.retCode == 1){
+            if(response.data.retCode === 1){
               alert('get courses success');
-              this.$router.push({name: 'CourseIndex', params: {courses: response.data.courses}});
+              const courses = response.data.courses
+              this.$router.push({name: 'CourseIndex', params: { courses }});
             }
             else {
               _this.$message({

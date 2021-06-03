@@ -13,7 +13,7 @@
           <el-table :data="unread" :show-header="false" style="width: 100%">
             <el-table-column>
               <template #default="scope">
-                <span class="message-title">{{scope.row.title}}</span>
+                <span class="message-title" @click="openCourse(scope.row.title)">{{scope.row.title}}</span>
               </template>
             </el-table-column>
             <el-table-column prop="date" width="180"></el-table-column>
@@ -32,7 +32,7 @@
             <el-table :data="read" :show-header="false" style="width: 100%">
               <el-table-column>
                 <template #default="scope">
-                  <span class="message-title">{{scope.row.title}}</span>
+                  <span class="message-title" @click="openCourse(scope.row.title)">{{scope.row.title}}</span>
                 </template>
               </el-table-column>
               <el-table-column prop="date" width="150"></el-table-column>
@@ -68,13 +68,13 @@ export default {
         title: '编译原理',
       }, {
         date: '更新于 2021-04-19 20:00:00',
-        title: '计算机系统导论'
+        title: '计算机系统导论',
       },{
         date: '更新于 2021-04-19 20:00:00',
-        title: '数学分析III'
+        title: '数学分析III',
       }],
-      read :[{}]
-      //read: this.$route.params.courses
+
+      read: JSON.parse(this.$route.params.courses.toString()),
     }
   },
   methods: {
@@ -87,11 +87,45 @@ export default {
       const item = this.read.splice(index, 1);
       this.unread = item.concat(this.unread);
     },
+    openCourse(course) {
+      // console.log(`dash: ${Course.id}`);
+      // this.$router.push({
+      //   name: 'Questions',
+      //   params: {url:Course.link,id:Course.id}
+      // })
+      var post_request = new FormData()
+      post_request.append('course', course)
+      let _this = this
+      this.$http
+          .request({
+            url: this.$url + '/openCourse',
+            method: 'post',
+            data: post_request,
+            headers: {'Content-Type': 'multipart/form-data'},
+          })
+          .then((response) => {
+            console.log(response)
+            if(response.data.retCode === 1){
+              alert('get questions success')
+              const questions = response.data.questions
+              this.$router.push({name: 'Questions', params: {questions}})
+            }else{
+              _this.$message({
+                message: "openCourse() failed",
+                type: 'warning',
+              })
+              return false
+            }
+          })
+          .catch((response) => {
+            console.log(response)
+          })
+    }//openCourse() end
   },
   computed: {
     unreadNum(){
       return this.unread.length;
-    }
+    },
   }
 }
 
