@@ -1,39 +1,12 @@
 <template>
-  <h1>This is the Questions view</h1>
+<div>
+  <div id = 'logoimg'>
+  <img alt="Vue logo" src="./logo.png" height="106" width="256">
+  </div>
+  <div id = 'text'>
+  <p> CourseName </p>
+  </div>
   <el-container class="higher-part">
-    <div class="form-box">
-      <el-form ref="form" :model="form" label-width="80px">
-        <el-form-item label="问题标题">
-          <el-input v-model="form.title"></el-input>
-        </el-form-item>
-        <el-form-item label="日期时间">
-          <el-col :span="11">
-            <el-date-picker
-                type="date"
-                placeholder="选择日期"
-                v-model="form.date1"
-                style="width: 100%;"
-            ></el-date-picker>
-          </el-col>
-          <el-col class="line" :span="2">-</el-col>
-          <el-col :span="11">
-            <el-time-picker
-                placeholder="选择时间"
-                v-model="form.date2"
-                style="width: 100%;"
-            ></el-time-picker>
-          </el-col>
-        </el-form-item>
-        <el-form-item label="文本框">
-          <el-input type="textarea" rows="5" v-model="form.desc"></el-input>
-        </el-form-item>
-        <el-form-item>
-          <el-button type="primary" @click="submitQuestion">提问</el-button>
-        </el-form-item>
-      </el-form>
-    </div>
-  </el-container>
-  <el-container class="lower-part">
     <div class="container">
       <el-tabs v-model="message">
         <el-tab-pane :label="`全部问题(${unread.length})`" name="first">
@@ -59,42 +32,29 @@
               </template>
             </el-table-column>
           </el-table>
-          <div class="handle-row">
-            <el-button type="primary">全部关注</el-button>
-          </div>
         </el-tab-pane>
-        <el-tab-pane :label="`我关注的问题(${read.length})`" name="second">
-          <template v-if="message === 'second'">
-            <el-table :data="read" :show-header="false" style="width: 100%">
-              <el-table-column>
-                <template #default="scope">
-                  <span class="message-title">{{scope.row.title}}</span>
-                </template>
-              </el-table-column>
-              <el-table-column prop="content" width="180"></el-table-column>
-              <el-table-column width="540">
-                <el-form>
-                  <el-form-item label="文本框">
-                    <el-input title="高赞回复" type="textarea" autosize rows="5" v-model="form.desc"></el-input>
-                  </el-form-item>
-                </el-form>
-              </el-table-column>
-              <el-table-column prop="stars" width="180"></el-table-column>
-              <el-table-column prop="date" width="180"></el-table-column>
-              <el-table-column width="120">
-                <template #default="scope">
-                  <el-button type="danger" @click="handleDel(scope.$index)">不再关注</el-button>
-                </template>
-              </el-table-column>
-            </el-table>
-            <div class="handle-row">
-              <el-button type="danger">删除全部</el-button>
-            </div>
-          </template>
-        </el-tab-pane>
+
       </el-tabs>
     </div>
   </el-container>
+
+  <el-container class="lower-part">
+    <div class="form-box">
+      <el-form ref="form" :model="form" label-width="80px">
+        <el-form-item label="问题标题">
+          <el-input v-model="form.title"></el-input>
+        </el-form-item>
+
+        <el-form-item label="问题描述">
+          <el-input type="textarea" :rows="10" v-model="form.desc"></el-input>
+        </el-form-item>
+        <el-form-item>
+          <el-button type="primary" @click="submitQuestion">提问</el-button>
+        </el-form-item>
+      </el-form>
+    </div>
+  </el-container>
+</div>
 </template>
 
 <script>
@@ -252,5 +212,10 @@ export default {
 .handle-row{
   margin-top: 30px;
 }
+
+.form-box{
+  width: 700px;
+}
+
 </style>
 

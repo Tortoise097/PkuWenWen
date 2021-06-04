@@ -90,6 +90,35 @@ def getCourseIndex(request):
     return JsonResponse(retdata)
 
 @csrf_exempt
+def getQuestionIndex(request):
+    CourseName = request.POST.get('coursename')
+    print(CourseName)
+    which_course = models.Course.objects.get(course_name = CourseName)
+    questions = models.Question.objects.filter(cid = which_course.id).values()
+    retdata = {}
+    retdata['questionlist'] = list(questions)
+    return JsonResponse(retdata)
+
+@csrf_exempt
+def addQuestion(request):
+    CourseName = request.POST.get('coursename')
+    which_course = models.Course.objects.get(course_name = CourseName)
+    q_publisher = request.POST.get('publisher')
+    q_title = request.POST.get('title')
+    q_content = request.POST.get('content')
+    q1 = models.Question(cid = which_course.id, publisher = q_publisher, title = q_title, content = q_content)
+    q1.save()
+    res = {'retCode': 0, 'message': ''}
+    if(q1.id > 0 ):
+        res['retCode'] = 0
+        res['message'] = '成功添加问题'
+    else:
+        res['retCode'] = 1
+        res['message'] = '添加问题失败'
+    return JsonResponse({'addQuestion':res})
+
+
+@csrf_exempt
 def openSchool(request):
     schoolName = request.POST.get('school', '信息科学技术学院')
     courses = [ {'date': '更新于 2021-06-03 15:56:00', 'title': 'course1 from backend openSchool'}, {'date': '更新于 2021-06-03 15:56:00', 'title': 'course2 from backend openSchool'} ]

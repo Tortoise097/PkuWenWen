@@ -34,9 +34,15 @@ const routes = [
         component: () => import('../components/Pages/CourseIndex.vue')
     },
     {
-        path: '/:school/:course/Questions',
-        name: 'Questions',
-        component: () => import('../components/Pages/Questions.vue')
+        path: '/:school/:course/QuestionIndex',
+        //path: '/Questions',
+        name: 'QuestionIndex',
+        component: () => import('../components/Pages/QuestionIndex.vue')
+    },
+    {
+        path: '/Question/:id',
+        name: 'Question',
+        component: () => import('../components/Pages/Question.vue')
     },
     {
         path: '/Dashboard',

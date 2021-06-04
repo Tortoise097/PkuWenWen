@@ -7,6 +7,8 @@ urlpatterns = [
     path('login', views.login),
     path('getSchoolIndex',views.getSchoolIndex),
     path('getCourseIndex',views.getCourseIndex),
+    path('getQuestionIndex',views.getQuestionIndex),
+    path('addQuestion',views.addQuestion),
     path('openSchool', views.openSchool),
     path('openCourse', views.openCourse),
     path('openQuestion', views.openQuestion),

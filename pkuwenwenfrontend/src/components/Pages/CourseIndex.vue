@@ -65,7 +65,7 @@ export default {
     openCourse (coursename) {
        console.log(`dash: ${coursename}`);
        this.$router.push({
-         path: '/' + this.$route.params.school + '/' + coursename + '/CourseIndex',
+         path: '/' + this.$route.params.school + '/' + coursename + '/QuestionIndex',
        })
     }
   },

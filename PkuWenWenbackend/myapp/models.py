@@ -17,11 +17,10 @@ class UserModel(models.Model):
 
 # 问题回复
 class Reply(models.Model): 
-    proNum = models.IntegerField() # 点赞数
-    conNum = models.IntegerField() # 点踩数
+    proNum = models.IntegerField(default=0) # 点赞数
+    conNum = models.IntegerField(default=0) # 点踩数
     replyer = models.CharField(max_length=32) # 用户名，在后台记录，在前台匿名
     qid = models.IntegerField() #这个回复所属的问题在数据库里的id
-
     content = models.TextField() 
 
 
