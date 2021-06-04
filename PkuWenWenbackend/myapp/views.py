@@ -116,7 +116,61 @@ def addQuestion(request):
         res['retCode'] = 1
         res['message'] = '添加问题失败'
     return JsonResponse({'addQuestion':res})
+    
+@csrf_exempt
+def addReply(request):
+    rep = request.POST.get('replyer')
+    ct = request.POST.get('reply_content')
+    Qid = request.POST.get('qid')
+    p1 = models.Reply(proNum = 0, conNum = 0, replyer = rep, qid = Qid, content = ct)
+    p1.save()
 
+    res = {'retCode': 0, 'message': ''}
+    if(p1.id > 0 ):
+        res['retCode'] = 0
+        res['message'] = '成功添加回复'
+    else:
+        res['retCode'] = 1
+        res['message'] = '添加回复失败'
+    return JsonResponse(res)
+
+@csrf_exempt
+def getAnswerList(request):#返回answerList和当前问题的内容
+    Qid = request.POST.get('question_id')
+    ques =  models.Question.objects.get(id = Qid)
+    replys = models.Reply.objects.filter(qid = Qid).values()
+    retdata = {}
+    retdata['answerlist'] = list(replys)
+    retdata['question'] = {'title':ques.title, 'content':ques.content}
+
+    return JsonResponse(retdata)
+
+@csrf_exempt
+def likeAnswer(request):
+    rid = request.POST.get('answer_id')
+    rep = models.Reply.objects.get(id = rid)
+    rep.proNum = rep.proNum +1
+    rep.save()
+    res = {'retCode': 0, 'message': 'OK'}
+    return JsonResponse(res)
+
+@csrf_exempt
+def dislikeAnswer(request):
+    CourseName = request.POST.get('coursename')
+    which_course = models.Course.objects.get(course_name = CourseName)
+    q_publisher = request.POST.get('publisher')
+    q_title = request.POST.get('title')
+    q_content = request.POST.get('content')
+    q1 = models.Question(cid = which_course.id, publisher = q_publisher, title = q_title, content = q_content)
+    q1.save()
+    res = {'retCode': 0, 'message': ''}
+    if(q1.id > 0 ):
+        res['retCode'] = 0
+        res['message'] = '成功添加问题'
+    else:
+        res['retCode'] = 1
+        res['message'] = '添加问题失败'
+    return JsonResponse({'addQuestion':res})
 
 @csrf_exempt
 def openSchool(request):
